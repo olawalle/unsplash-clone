@@ -31,52 +31,53 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
 import Card from '@/components/card.vue';
-import { search } from '../services'
-import {mapGetters} from 'vuex'
-import * as constants from '../constants'
+import { search } from '../services';
+import * as constants from '../constants';
+
 export default {
   name: 'home',
   components: {
-    Card
+    Card,
   },
   data() {
     return {
       searchValue: 'African',
-      hasSearched: false
-    }
+      hasSearched: false,
+    };
   },
   mounted() {
-    this.fetchData(this.searchValue, false)
+    this.fetchData(this.searchValue, false);
   },
   computed: {
     ...mapGetters({
-      "pictures": "getPictures",
-      "loading": "loadingStatus"
-    })
+      pictures: 'getPictures',
+      loading: 'loadingStatus',
+    }),
   },
   methods: {
     submit(e) {
-      if (e.code === "Enter") {
-        this.fetchData(this.searchValue, true)
+      if (e.keyCode === 13) {
+        this.fetchData(this.searchValue, true);
       }
     },
     fetchData(value, userSerched) {
-      this.$store.commit(constants.LOADING_STATUS, true)
+      this.$store.commit(constants.LOADING_STATUS, true);
       search({
-        query: value
+        query: value,
       })
-      .then(res => {
-        this.hasSearched = userSerched
-        this.$store.commit(constants.SAVE_PICTURE_DATA, res.data.results)
-        this.$store.commit(constants.LOADING_STATUS, false)
-      })
-      .catch(err => {
-        console.log(err)
-        this.$store.commit(constants.LOADING_STATUS, false)
-      })
-    }
-  }
+        .then((res) => {
+          this.hasSearched = userSerched;
+          this.$store.commit(constants.SAVE_PICTURE_DATA, res.data.results);
+          this.$store.commit(constants.LOADING_STATUS, false);
+        })
+        .catch((err) => {
+          console.log(err);
+          this.$store.commit(constants.LOADING_STATUS, false);
+        });
+    },
+  },
 };
 </script>
 
@@ -132,7 +133,7 @@ export default {
       column-fill: auto;
     }
   }
-  @media (max-width: 767px){    
+  @media (max-width: 767px){
     .home {
       padding: 0;
       .searchBar {
@@ -162,4 +163,3 @@ export default {
     }
   }
 </style>
-

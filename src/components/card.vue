@@ -28,19 +28,19 @@
 </template>
 <script>
 export default {
-    props: ["data", "loading"],
-    data() {
-      return {
-        show: false,
-      }
+  props: ['data', 'loading'],
+  data() {
+    return {
+      show: false,
+    };
+  },
+  methods: {
+    openModal() {
+      this.show = true;
+      console.log(data);
     },
-    methods: {
-        openModal() {
-            this.show = true
-            console.log(data)
-        }
-    }
-}
+  },
+};
 </script>
 <style lang="scss" scoped>
     .grid {
@@ -116,6 +116,7 @@ export default {
     }
     .imgWrap {
         width: 100%;
+        min-width: 100%;
         max-height: 85vh;
         overflow: auto;
     }
@@ -135,7 +136,7 @@ export default {
     .grid:hover {
         transform: scale(1.015);
     }
-    @media (max-width: 767px){        
+    @media (max-width: 767px){
         .grid {
             display: block !important;
             .card {
