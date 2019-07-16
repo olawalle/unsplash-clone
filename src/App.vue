@@ -1,20 +1,19 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
     <router-view/>
   </div>
 </template>
 
 <style lang="scss">
+@import 'node_modules/bootstrap/scss/bootstrap';
+@import 'node_modules/bootstrap-vue/src/index.scss';
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+  padding: 0
 }
 #nav {
   padding: 30px;
@@ -24,6 +23,24 @@
     &.router-link-exact-active {
       color: #42b983;
     }
+  }
+}
+.modal-body {
+  padding: 0px !important;
+  border-radius: 0px !important;
+  overflow: hidden !important;
+  ::-webkit-scrollbar {
+      width: 5px;
+  }
+  ::-webkit-scrollbar-track {
+      background: #f1f1f1;
+  }
+  ::-webkit-scrollbar-thumb {
+      background: #888;
+      border-radius: 15px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+      background: #555;
   }
 }
 </style>
